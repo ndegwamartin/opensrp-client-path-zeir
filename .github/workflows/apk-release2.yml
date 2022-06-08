@@ -48,6 +48,11 @@ jobs:
         run: echo $KEYSTORE_PROPERTIES | base64 -di > keystore.properties
         env:
           KEYSTORE_PROPERTIES: ${{ secrets.KEYSTORE_PROPERTIES }} 
+      
+      - name: Decode google-services.json
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: echo $FIREBASE_CONFIG > opensrp-path-zeir/google-services.json    
 
       - name: Generate AAB (Android App Bundle) file
         run: ./gradlew :opensrp-path-zeir:bundleRelease -x :opensrp-path-zeir:testDebugUnitTest --stacktrace
