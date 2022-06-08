@@ -23,6 +23,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.firebase-perf' // Apply the Performance Monitoring plugin
+apply from: '../properties.gradle'
 
 jacoco {
     toolVersion = jacocoVersion
@@ -143,6 +144,7 @@ android {
         }
 
         debug {
+            signingConfig signingConfigs.debug
             testCoverageEnabled true
             resValue "string", 'opensrp_url', '"https://path-zeir-stage.smartregister.org/opensrp/"'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '250'
